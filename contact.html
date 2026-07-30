@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O C C U L T — Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #060606;
+      --ash: #f2ede4;
+      --ember: #c8a96e;
+      --dim: #6a6458;
+      --rule: rgba(242,237,228,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; min-height: 100%;
+      background: var(--black); color: var(--ash);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body, a, button { cursor: crosshair; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.6rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(6,6,6,0.88);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-wordmark {
+      font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 15px;
+      letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--ash); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 10px;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none;
+      transition: color 0.4s ease; position: relative;
+      white-space: nowrap;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 0.5px; background: var(--ember);
+      transition: width 0.4s ease;
+    }
+    .nav-links a:hover { color: var(--ash); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--ember); }
+
+    /* HERO */
+    .hero {
+      padding: 10rem 3rem 5rem;
+      max-width: 900px;
+    }
+    .hero .eyebrow {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 10px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 1.05; color: var(--ash);
+      margin-bottom: 1.6rem;
+    }
+    .hero p.sub {
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      line-height: 1.7; font-weight: 300;
+      color: var(--ash); opacity: 0.78;
+      max-width: 60ch;
+    }
+
+    .rule { height: 0.5px; background: var(--rule); margin: 0 3rem; }
+
+    /* SECTION LABEL */
+    .section-label {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 4.5rem 3rem 2rem;
+    }
+    .section-label span {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--dim); white-space: nowrap;
+    }
+    .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
+
+    /* CONTACT FORM */
+    .contact-section { padding: 0 3rem 6rem; max-width: 760px; }
+    .contact-section p.intro-text {
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      line-height: 1.7; font-weight: 300;
+      color: var(--ash); opacity: 0.82;
+      max-width: 65ch; margin-bottom: 2.6rem;
+    }
+
+    form { display: flex; flex-direction: column; gap: 2rem; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    .field { display: flex; flex-direction: column; gap: 0.6rem; }
+    .field label {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 0.5px solid var(--rule);
+      color: var(--ash);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 1.15rem;
+      padding: 0.5rem 0.1rem;
+      outline: none;
+      transition: border-color 0.4s ease;
+    }
+    .field select {
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a6458'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.2rem center;
+      cursor: crosshair;
+    }
+    .field select option { background: var(--black); color: var(--ash); }
+    .field textarea { resize: vertical; min-height: 110px; font-family: 'Cormorant Garamond', serif; }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(242,237,228,0.28); font-style: italic; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-bottom-color: var(--ember); }
+
+    .submit-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 0.4rem; padding-top: 1.6rem;
+      border-top: 0.5px solid var(--rule);
+    }
+    .submit-btn {
+      background: none; border: none;
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 11px;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--ash);
+      border-bottom: 0.5px solid var(--ember);
+      padding-bottom: 0.4rem;
+      transition: color 0.3s ease, letter-spacing 0.3s ease;
+    }
+    .submit-btn:hover { color: var(--ember); letter-spacing: 0.48em; }
+    .submit-hint {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 0.9rem; color: var(--dim);
+    }
+
+    /* NEWSLETTER */
+    .newsletter-section {
+      padding: 0 3rem 8rem; max-width: 760px;
+    }
+    .newsletter-card {
+      border: 1px solid var(--rule);
+      padding: 3rem clamp(1.6rem, 4vw, 3.4rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 2px; height: 100%;
+      background: var(--ember);
+    }
+    .newsletter-eyebrow {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1rem;
+    }
+    .newsletter-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--ash); margin-bottom: 1rem;
+    }
+    .newsletter-card p {
+      font-size: 1.05rem; line-height: 1.7; font-weight: 300;
+      color: var(--ash); opacity: 0.75;
+      max-width: 55ch; margin-bottom: 2rem;
+    }
+    .newsletter-form {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .newsletter-form .field { flex: 1; min-width: 220px; }
+    .newsletter-form .submit-btn {
+      white-space: nowrap;
+      padding-bottom: 0.5rem;
+    }
+    .newsletter-note {
+      margin-top: 1.6rem;
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.08em; color: var(--dim); line-height: 1.8;
+    }
+
+    footer {
+      padding: 2rem 3rem; border-top: 0.5px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-mark {
+      font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 10px;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim);
+    }
+    .footer-occult {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-style: italic; font-size: 12px; color: var(--dim); letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero, .section-label, .contact-section, .newsletter-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .field-row { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="directory.html" class="nav-wordmark">Occult</a>
+    <ul class="nav-links">
+      <li><a href="under_the_veil.html">Under the Veil</a></li>
+      <li><a href="kerosene.html">Kerosene</a></li>
+      <li><a href="collaboration.html">Collaboration</a></li>
+      <li><a href="contact.html" class="active">Contact / Newsletter</a></li>
+      <li><a href="directory.html">Directory</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="eyebrow">Get In Touch</p>
+    <h1>Contact.</h1>
+    <p class="sub">
+      Questions, inquiries, general correspondence — send it here. If you'd
+      rather stay in the loop without reaching out directly, there's a
+      newsletter list below.
+    </p>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- CONTACT FORM -->
+  <div class="section-label"><span>Send an Inquiry</span></div>
+  <div class="contact-section">
+    <p class="intro-text">
+      Whether it's a question about the collective, something you're curious
+      about, or just a note — this goes straight to us.
+    </p>
+
+    <form action="mailto:hello@occult-collective.com" method="POST" enctype="text/plain">
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="Name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" placeholder="you@email.com" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="topic">What's This About</label>
+        <select id="topic" name="Topic">
+          <option value="General Question">General Question</option>
+          <option value="Under the Veil">Under the Veil</option>
+          <option value="Kerosene">Kerosene</option>
+          <option value="Press / Media">Press / Media</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="Message" placeholder="What's on your mind?" required></textarea>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="submit-btn">Send</button>
+        <span class="submit-hint">We read everything. Replies aren't guaranteed.</span>
+      </div>
+    </form>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- NEWSLETTER -->
+  <div class="section-label"><span>Stay Connected</span></div>
+  <div class="newsletter-section">
+    <div class="newsletter-card">
+      <p class="newsletter-eyebrow">Coming Soon</p>
+      <h2>The newsletter isn't live yet.</h2>
+      <p>
+        We're building it. Drop your email below and we'll let you know the
+        moment it launches — new issues of Under the Veil, Kerosene releases,
+        and anything else worth sending.
+      </p>
+
+      <form class="newsletter-form" action="mailto:hello@occult-collective.com" method="POST" enctype="text/plain">
+        <div class="field">
+          <label for="newsletter-email">Email</label>
+          <input type="email" id="newsletter-email" name="Newsletter Signup Email" placeholder="you@email.com" required>
+        </div>
+        <button type="submit" class="submit-btn">Notify Me</button>
+      </form>
+
+      <p class="newsletter-note">
+        No spam, no schedule promises yet — just a signal that people want this,
+        so we know it's worth building properly.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-mark">O C C U L T &nbsp;·&nbsp; 2026</span>
+    <span class="footer-occult">Contact &amp; Newsletter</span>
+  </footer>
+
+</body>
+</html>

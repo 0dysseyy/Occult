@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O C C U L T — Submissions & Partnership</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #060606;
+      --ash: #f2ede4;
+      --ember: #c8a96e;
+      --dim: #6a6458;
+      --rule: rgba(242,237,228,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; min-height: 100%;
+      background: var(--black); color: var(--ash);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body, a, button { cursor: crosshair; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.6rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(6,6,6,0.88);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-wordmark {
+      font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 15px;
+      letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--ash); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 10px;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none;
+      transition: color 0.4s ease; position: relative;
+      white-space: nowrap;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 0.5px; background: var(--ember);
+      transition: width 0.4s ease;
+    }
+    .nav-links a:hover { color: var(--ash); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--ember); }
+
+    /* HERO */
+    .hero {
+      position: relative; width: 100%; height: 72vh; overflow: hidden;
+      display: flex; align-items: flex-end;
+      background: var(--black);
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      filter: brightness(0.72) saturate(0.9);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(6,6,6,0.4) 0%, transparent 35%, rgba(6,6,6,0.85) 85%, var(--black) 100%);
+      pointer-events: none;
+    }
+    .hero-text {
+      position: relative; z-index: 2;
+      padding: 0 3rem 4rem; width: 100%;
+    }
+    .hero-text p.eyebrow {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 10px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 0.8rem;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.05; color: var(--ash);
+      max-width: 14ch;
+    }
+
+    /* INTRO */
+    .intro {
+      max-width: 760px; margin: 0 auto;
+      padding: 6rem 3rem 3rem;
+    }
+    .intro p {
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      line-height: 1.75; font-weight: 300;
+      color: var(--ash); opacity: 0.88;
+      margin-bottom: 1.4rem;
+    }
+    .intro p em { font-style: italic; color: var(--ember); }
+
+    /* RULE */
+    .rule { height: 0.5px; background: var(--rule); margin: 0 3rem; }
+
+    /* FORM */
+    .form-section {
+      max-width: 760px; margin: 0 auto;
+      padding: 4.5rem 3rem 6rem;
+    }
+    .form-tag {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 2.4rem;
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .form-tag::after {
+      content: ''; flex: 1; height: 0.5px; background: var(--rule);
+    }
+
+    form { display: flex; flex-direction: column; gap: 2.1rem; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    .field { display: flex; flex-direction: column; gap: 0.6rem; }
+    .field label {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 0.5px solid var(--rule);
+      color: var(--ash);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 1.15rem;
+      padding: 0.5rem 0.1rem;
+      outline: none;
+      transition: border-color 0.4s ease;
+    }
+    .field select {
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a6458'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.2rem center;
+      cursor: crosshair;
+    }
+    .field select option { background: var(--black); color: var(--ash); }
+    .field textarea { resize: vertical; min-height: 110px; font-family: 'Cormorant Garamond', serif; }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(242,237,228,0.28); font-style: italic; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-bottom-color: var(--ember); }
+
+    .field-note {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.1em; color: var(--dim); margin-top: 0.2rem;
+    }
+
+    .submit-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1rem; padding-top: 1.8rem;
+      border-top: 0.5px solid var(--rule);
+    }
+    .submit-btn {
+      background: none; border: none;
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 11px;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--ash);
+      border-bottom: 0.5px solid var(--ember);
+      padding-bottom: 0.4rem;
+      transition: color 0.3s ease, letter-spacing 0.3s ease;
+    }
+    .submit-btn:hover { color: var(--ember); letter-spacing: 0.48em; }
+    .submit-hint {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 0.9rem; color: var(--dim);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .intro, .form-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .field-row { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="directory.html" class="nav-wordmark">Occult</a>
+    <ul class="nav-links">
+      <li><a href="under_the_veil.html">Under the Veil</a></li>
+      <li><a href="kerosene.html">Kerosene</a></li>
+      <li><a href="collaboration.html" class="active">Collaboration</a></li>
+      <li><a href="contact.html">Contact / Newsletter</a></li>
+      <li><a href="directory.html">Directory</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    
+    <div class="hero-text">
+      <p class="eyebrow">Submissions &amp; Partnership</p>
+      <h1>Submissions &amp; Partnership.</h1>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p>
+      O C C U L T was built to hold <em>various themes from various artists</em> —
+      which means this isn't a one-voice project, and it was never meant to be.
+      If you're making work that doesn't quite fit anywhere else, we want to see it.
+    </p>
+    <p>
+      This is open to writing, essays, poetry, film, art, photography, and
+      anonymous accounts — one-off submissions for Under the Veil, an ongoing
+      place in the collective itself, or a partnership between O C C U L T and
+      what you're building elsewhere. Tell us what you're working on, and where
+      you'd want it to live.
+    </p>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- FORM -->
+  <div class="form-section">
+    <p class="form-tag">Submit Work / Partner With Us</p>
+
+    <form action="mailto:hello@occult-collective.com" method="POST" enctype="text/plain">
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Name / Alias</label>
+          <input type="text" id="name" name="Name" placeholder="Your name — or a byline, if you'd rather" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" placeholder="you@email.com" required>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="medium">Medium</label>
+          <select id="medium" name="Medium">
+            <option value="Writing / Essay">Writing / Essay</option>
+            <option value="Poetry">Poetry</option>
+            <option value="Film">Film</option>
+            <option value="Art">Art</option>
+            <option value="Photography">Photography</option>
+            <option value="Anonymous Account">Anonymous Account</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="type">What Are You Looking For</label>
+          <select id="type" name="Submission Type">
+            <option value="Submit a Piece">Submit a Piece — Under the Veil</option>
+            <option value="Join the Collective">Join the Collective — Ongoing</option>
+            <option value="Brand / Creative Partnership">Brand / Creative Partnership</option>
+            <option value="Not Sure Yet">Not Sure Yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="title">Title of Work (if applicable)</label>
+        <input type="text" id="title" name="Title" placeholder="What's it called?">
+      </div>
+
+      <div class="field">
+        <label for="links">Links / Portfolio</label>
+        <input type="text" id="links" name="Links" placeholder="Portfolio, previous work, social — whatever's relevant">
+      </div>
+
+      <div class="field">
+        <label for="message">Tell Us About It</label>
+        <textarea id="message" name="Message" placeholder="What is it, and why does it belong here?" required></textarea>
+      </div>
+
+      <div class="field">
+        <label style="display:flex; align-items:center; gap:0.6rem; cursor:crosshair; text-transform:none; letter-spacing:0.02em; font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--ash);">
+          <input type="checkbox" id="anonymous" name="Anonymous" value="Yes" style="width:14px; height:14px; accent-color:var(--ember);">
+          I'd like this to be considered for anonymous publication
+        </label>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="submit-btn">Send Submission</button>
+        <span class="submit-hint">We read everything. Replies aren't guaranteed.</span>
+      </div>
+    </form>
+  </div>
+
+  <footer style="padding: 2rem 3rem; border-top: 0.5px solid var(--rule); display: flex; justify-content: space-between; align-items: center;">
+    <span style="font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim);">O C C U L T &nbsp;·&nbsp; 2026</span>
+    <span style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 12px; color: var(--dim); letter-spacing: 0.1em;">Open to new work &amp; partnership</span>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interest — Kerosene</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #060606;
+      --ash: #f2ede4;
+      --ember: #c8a96e;
+      --dim: #6a6458;
+      --rule: rgba(242,237,228,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; min-height: 100%;
+      background: var(--black);
+      color: var(--ash);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.6rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6,6,6,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .nav-wordmark {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 100; font-size: 15px;
+      letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--ash); text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200; font-size: 10px;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none;
+      transition: color 0.4s ease; position: relative;
+    }
+
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: -3px; left: 0; width: 0; height: 0.5px;
+      background: var(--ember); transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover { color: var(--ash); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--ash); }
+
+    .page-body {
+      padding: 10rem 3rem 8rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200; font-size: 9px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+
+    .section-tag::after {
+      content: ''; flex: 1; height: 0.5px;
+      background: var(--rule);
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.1; color: var(--ash);
+      margin-bottom: 3rem;
+    }
+
+    .rule { height: 0.5px; background: var(--rule); margin: 3rem 0; }
+
+    p.body-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 1.15rem;
+      line-height: 1.95; color: var(--ash);
+      opacity: 0.85; margin-bottom: 1.8rem;
+      max-width: 640px;
+    }
+
+    p.body-text em { font-style: italic; color: var(--ember); }
+
+    footer {
+      padding: 2rem 3rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 6rem;
+    }
+
+    .footer-mark {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 100; font-size: 10px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .footer-occult {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: 12px; color: var(--dim); letter-spacing: 0.1em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-body { animation: fadeUp 1.2s ease both; }
+
+    body, a { cursor: crosshair; }
+
+    .form-group {
+      margin-bottom: 2.5rem;
+    }
+
+    label {
+      display: block;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200; font-size: 9px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 0.8rem;
+    }
+
+    input, textarea, select {
+      width: 100%; max-width: 560px;
+      background: transparent;
+      border: none;
+      border-bottom: 0.5px solid rgba(242,237,228,0.25);
+      padding: 0.8rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 1.1rem;
+      color: var(--ash);
+      outline: none;
+      transition: border-color 0.3s ease;
+      cursor: crosshair;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--ember);
+    }
+
+    textarea {
+      resize: none; height: 100px;
+      line-height: 1.7;
+    }
+
+    select option {
+      background: #111; color: var(--ash);
+    }
+
+    .submit-btn {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200; font-size: 11px;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--ash);
+      background: transparent;
+      border: none;
+      border-bottom: 0.5px solid var(--ember);
+      padding: 0 0 0.4rem;
+      cursor: crosshair;
+      transition: color 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover { color: var(--ember); }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="Directory.html" class="nav-wordmark">OCCULT</a>
+    <ul class="nav-links">
+      <li><a href="kerosene.html">Home</a></li>
+      <li><a href="kerosene_about.html" class="">About</a></li>
+      <li><a href="kerosene_gallery.html" class="">Gallery</a></li>
+      <li><a href="kerosene_interest.html" class="active">Interest</a></li>
+      <li><a href="kerosene_contact.html" class="">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-body">
+    <p class="section-tag">Interest</p>
+    <h1 class="page-title">Register your interest.</h1>
+    <div class="rule"></div>
+    <p class="body-text">
+      Kerosene is not yet in full production. Leave your details below
+      and you will be the first to know when pieces become available —
+      no noise, no newsletter. Just a single message when it's ready.
+    </p>
+    <div class="rule"></div>
+
+    <form action="#" method="POST">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="interest">What draws you here</label>
+        <select id="interest" name="interest">
+          <option value="" disabled selected>Select one</option>
+          <option value="clothing">The clothing</option>
+          <option value="collective">The collective</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="note">Anything else</label>
+        <textarea id="note" name="note" placeholder="Optional"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+  <footer>
+    <span class="footer-mark">Kerosene &nbsp;·&nbsp; 2026</span>
+    <span class="footer-occult">Part of the Occult Collective</span>
+  </footer>
+</body>
+</html>
