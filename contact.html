@@ -259,7 +259,7 @@
       about, or just a note — this goes straight to us.
     </p>
 
-    <form action="mailto:hello@occult-collective.com" method="POST" enctype="text/plain">
+    <form action="https://formspree.io/f/mdenvyon" method="POST" id="contact-form">
       <div class="field-row">
         <div class="field">
           <label for="name">Name</label>
@@ -308,7 +308,7 @@
         and anything else worth sending.
       </p>
 
-      <form class="newsletter-form" action="mailto:hello@occult-collective.com" method="POST" enctype="text/plain">
+      <form class="newsletter-form" action="https://formspree.io/f/xppaekzy" method="POST" id="newsletter-form">
         <div class="field">
           <label for="newsletter-email">Email</label>
           <input type="email" id="newsletter-email" name="Newsletter Signup Email" placeholder="you@email.com" required>
@@ -327,6 +327,58 @@
     <span class="footer-mark">O C C U L T &nbsp;·&nbsp; 2026</span>
     <span class="footer-occult">Contact &amp; Newsletter</span>
   </footer>
+
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          window.location.href = 'kerosene_thank_you.html';
+        } else {
+          response.json().then(function (data) {
+            alert(
+              data && data.errors
+                ? data.errors.map(function (err) { return err.message; }).join(', ')
+                : 'Something went wrong — please try again.'
+            );
+          });
+        }
+      }).catch(function () {
+        alert('Something went wrong — please try again.');
+      });
+    });
+
+    const newsletterForm = document.getElementById('newsletter-form');
+    newsletterForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(newsletterForm);
+      fetch(newsletterForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          window.location.href = 'kerosene_thank_you.html';
+        } else {
+          response.json().then(function (data) {
+            alert(
+              data && data.errors
+                ? data.errors.map(function (err) { return err.message; }).join(', ')
+                : 'Something went wrong — please try again.'
+            );
+          });
+        }
+      }).catch(function () {
+        alert('Something went wrong — please try again.');
+      });
+    });
+  </script>
 
 </body>
 </html>

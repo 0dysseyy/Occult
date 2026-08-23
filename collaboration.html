@@ -232,7 +232,7 @@
   <div class="form-section">
     <p class="form-tag">Submit Work / Partner With Us</p>
 
-    <form action="mailto:hello@occult-collective.com" method="POST" enctype="text/plain">
+    <form action="https://formspree.io/f/xoeazyak" method="POST" id="collab-form">
       <div class="field-row">
         <div class="field">
           <label for="name">Name / Alias</label>
@@ -301,6 +301,33 @@
     <span style="font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim);">O C C U L T &nbsp;·&nbsp; 2026</span>
     <span style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 12px; color: var(--dim); letter-spacing: 0.1em;">Open to new work &amp; partnership</span>
   </footer>
+
+  <script>
+    const collabForm = document.getElementById('collab-form');
+    collabForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(collabForm);
+      fetch(collabForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          window.location.href = 'kerosene_thank_you.html';
+        } else {
+          response.json().then(function (data) {
+            alert(
+              data && data.errors
+                ? data.errors.map(function (err) { return err.message; }).join(', ')
+                : 'Something went wrong — please try again.'
+            );
+          });
+        }
+      }).catch(function () {
+        alert('Something went wrong — please try again.');
+      });
+    });
+  </script>
 
 </body>
 </html>

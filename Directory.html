@@ -9,11 +9,16 @@
       height: 100%;
       background: black;
       overflow: hidden;
+      transition: opacity 1.5s ease;
+      opacity: 1;
     }
     canvas {
       width: 100%;
       height: 100%;
       display: block;
+    }
+    .fade-out {
+      opacity: 0;
     }
   </style>
 </head>
@@ -36,7 +41,40 @@
 
   const canvas = document.getElementById('canvas3d');
   const app = new Application(canvas);
-  app.load('https://prod.spline.design/AJggjjaqAeUW6dFE/scene.splinecode');
+
+  const pageMap = {
+    "Under the Veil": "under_the_veil.html",
+    "Kerosene": "kerosene.html",
+    "contact": "contact.html",
+    "Collab": "collaboration.html",
+    "Creator": "creator_home.html"
+  };
+
+  app.load('https://prod.spline.design/SRxT1sbpJH2pEjaH/scene.splinecode').then(() => {
+    app.addEventListener('mouseDown', (e) => {
+      const clickedName = e.target.name;
+      console.log("Clicked object:", clickedName);
+
+      if (pageMap[clickedName]) {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = pageMap[clickedName];
+        }, 1500); // Match fade duration
+      }
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('load', () => {
+    document.body.classList.remove('fade-out');
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
 </script>
 
 </body>
