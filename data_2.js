@@ -1,0 +1,97 @@
+const IMG_007 = "gate-of-the-sun-1.jpg";
+const IMG_008 = "i-love-you-cover.jpg";
+const IMG_004 = "step.png";
+const IMG_001 = "occult.jpg"; 
+const IMG_003 = "jacky-profile.jpg";
+const IMG_002 = "mask-of-medusa.svg";
+
+const VEIL_DB = [
+  {
+    id: 8,
+    issueNum: "008",
+    title: "I Love You",
+    date: "Sep 2026",
+    tags: ["Music"],
+    excerpt: "Dear Esther.",
+    url: "veil_008.html",
+    image: IMG_008,
+    isCurrent: false
+  },
+  {
+    id: 7,
+    issueNum: "007",
+    title: " Gate of the Sun",
+    date: "Sep 2026",
+    tags: ["Photography"],
+    excerpt: "A short line about the piece.",
+    url: "veil_007.html",
+    image: IMG_007,
+    isCurrent: false,
+  },
+  {
+    id: 6,
+    issueNum: "006",
+    title: "Untitled Submission",
+    date: "Sep 2026",
+    tags: ["Anonymous Accounts"],
+    excerpt: "A short line about the piece.",
+    url: "veil_006.html",
+    image: null,
+    isCurrent: false,
+  },
+  {
+    id: 5,
+    issueNum: "005",
+    title: "ColdTrain - Untitled Submission",
+    date: "Sep 2026",
+    tags: ["Music"],
+    excerpt: "A short line describing the piece.",
+    url: "veil_005.html",
+    image: null,
+    isCurrent: false,
+  },
+  {
+    id: 4,
+    issueNum: "004",
+    title: "The Step of Luck",
+    date: "Sep 2026",
+    tags: ["Film"],
+    excerpt: "Betrayal in a different lens.",
+    url: "veil_004.html",
+    image: IMG_004,
+    isCurrent: false,
+  },
+  {
+    id: 3,
+    issueNum: "003",
+    title: "Static Saints",
+    date: "Sep 2026",
+    tags: ["Art"],
+    excerpt: null,
+    url: "veil_003.html",
+    image: IMG_003,
+    isCurrent: false,
+  },
+  {
+    id: 2,
+    issueNum: "002",
+    title: "Mask of Medusa",
+    date: "Sep 2026",
+    tags: ["Poetry"],
+    excerpt: null,
+    url: "veil_002.html",
+    image: IMG_002,
+    isCurrent: true,
+  },
+  {
+    id: 1,
+    issueNum: "001",
+    title: "O C C U L T",
+    date: "Sep 2026",
+    tags: ["Essay"],
+    excerpt: null,
+    url: "veil_001.html",
+    image: true,
+    isCurrent: false,
+  },
+];

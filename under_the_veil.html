@@ -76,18 +76,6 @@
       color: var(--ash); opacity: 0.75;
       max-width: 62ch;
     }
-    .medium-tags {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-      margin-top: 2rem;
-    }
-    .medium-tag {
-      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--dim);
-      border: 0.5px solid var(--rule);
-      padding: 0.4rem 0.8rem;
-    }
-
     .rule { height: 0.5px; background: var(--rule); margin: 0 3rem; }
 
     /* CURRENT ISSUE */
@@ -183,6 +171,13 @@
       font-weight: 300; font-style: italic;
       font-size: 1.4rem; color: var(--ash); margin-bottom: 0.4rem;
     }
+    .archive-row .info .archive-excerpt {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 0.95rem; line-height: 1.5;
+      color: var(--ash); opacity: 0.6;
+      margin-bottom: 0.5rem;
+      max-width: 48ch;
+    }
     .archive-row .info .archive-tags {
       display: flex; gap: 0.5rem; flex-wrap: wrap;
     }
@@ -263,7 +258,6 @@
     <p class="sub">
       Welcome to the Archive.
     </p>
-    <div class="medium-tags" id="hero-tags"></div>
   </section>
 
   <div class="rule"></div>
@@ -290,20 +284,13 @@
       const current = VEIL_DB.find(function(e) { return e.isCurrent; });
       const archive = VEIL_DB.slice().sort(function(a, b) { return b.id - a.id; });
 
-      // hero tag pills — unique tags across all entries
+      // unique tags across all entries — feeds the filter bar below
       const seen = {};
       const allTags = [];
       VEIL_DB.forEach(function(e) {
         e.tags.forEach(function(t) {
           if (!seen[t]) { seen[t] = true; allTags.push(t); }
         });
-      });
-      const heroTagsEl = document.getElementById('hero-tags');
-      allTags.forEach(function(tag) {
-        const s = document.createElement('span');
-        s.className = 'medium-tag';
-        s.textContent = tag;
-        heroTagsEl.appendChild(s);
       });
 
       // current issue
@@ -370,6 +357,9 @@
           }
           inner += '<span class="num">' + entry.issueNum + '</span>';
           inner += '<div class="info"><h3>' + entry.title + '</h3>';
+          if (entry.excerpt) {
+            inner += '<p class="archive-excerpt">' + entry.excerpt + '</p>';
+          }
           inner += '<div class="archive-tags">';
           entry.tags.forEach(function(t) { inner += '<span>' + t + '</span>'; });
           inner += '</div></div>';
