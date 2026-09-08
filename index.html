@@ -23,7 +23,7 @@
   </style>
 </head>
 <body>
-  <script src="loading.js"></script>
+  <script src="loading1.js"></script>
 
 <canvas id="canvas3d"></canvas>
 
@@ -53,6 +53,7 @@
       console.log("Clicked object:", clickedName);
 
       if (pageMap[clickedName]) {
+        if (window.occultShowLoading) window.occultShowLoading();
         document.body.classList.add('fade-out');
         setTimeout(() => {
           window.location.href = pageMap[clickedName];

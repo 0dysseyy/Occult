@@ -1,12 +1,11 @@
 /* O C C U L T — shared loading overlay
    Include this on every page with:  <script src="loading.js"></script>
-   placed right after the opening <body>
-  <script src="loading.js"></script> tag.
+   placed right after the opening <body> tag.
 
    Behavior:
    - On any page, clicking a link to directory.html shows the eye overlay
      immediately, waits briefly so the animation is visible, then navigates.
-   - On Directory.html itself, the overlay is shown instantly (no fade-in,
+   - On directory.html itself, the overlay is shown instantly (no fade-in,
      so nothing behind it flashes) and stays up until the page has fully
      loaded, then fades out.
 */
@@ -17,7 +16,7 @@
   var DIM = '#6a6458';
 
   var thisFile = window.location.pathname.split('/').pop() || 'index.html';
-  var isDirectoryPage = thisFile === 'Directory.html';
+  var isDirectoryPage = thisFile.toLowerCase() === 'directory.html';
 
   // ---- inject styles ----
   var style = document.createElement('style');
@@ -41,13 +40,10 @@
     overlay.className = 'active instant';
   }
   overlay.innerHTML = '<canvas id="occult-loading-canvas" width="500" height="500"></canvas>';
+  // attach to <html> rather than <body> so the overlay is never affected by
+  // a page's own body-level opacity/transform transitions (e.g. index.html's
+  // own fade-out effect)
   document.documentElement.appendChild(overlay);
-  // move it to be the very first thing painted, ahead of body content
-  document.addEventListener('DOMContentLoaded', function () {
-    if (overlay.parentNode !== document.body) {
-      document.body.insertBefore(overlay, document.body.firstChild);
-    }
-  });
 
   // ---- eye animation (same as creator_home) ----
   var canvas = document.getElementById('occult-loading-canvas');
@@ -155,6 +151,11 @@
     setTimeout(stopAnim, 550);
   }
 
+  // expose for pages that navigate without a plain <a href> click
+  // (e.g. index.html's Spline 3D scene, which navigates via JS instead of a link)
+  window.occultShowLoading = showOverlay;
+  window.occultHideLoading = hideOverlay;
+
   // start the animation immediately if we're already showing (directory.html on arrival)
   if (isDirectoryPage) {
     startAnim();
@@ -170,7 +171,7 @@
     var href = link.getAttribute('href');
     if (!href) return;
     var targetFile = href.split('/').pop().split('?')[0].split('#')[0];
-    if (targetFile === 'Directory.html') {
+    if (targetFile.toLowerCase() === 'directory.html') {
       e.preventDefault();
       showOverlay();
       setTimeout(function () {
