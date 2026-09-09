@@ -17,7 +17,7 @@ const VEIL_DB = [
     excerpt: null,
     url: "veil_009.html",
     image: IMG_009,
-    isCurrent: true,
+    isCurrent: false,
   },
   {
     id: 8,
@@ -39,7 +39,7 @@ const VEIL_DB = [
     excerpt: "We must look Hell and Heaven in the eye, and not wince.",
     url: "veil_007.html",
     image: IMG_007,
-    isCurrent: false,
+    isCurrent: true,
   },
   {
     id: 6,
