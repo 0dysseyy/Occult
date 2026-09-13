@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O C C U L T — Under the Veil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #060606;
+      --ash: #f2ede4;
+      --ember: #c8a96e;
+      --dim: #6a6458;
+      --rule: rgba(242,237,228,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; min-height: 100%;
+      background: var(--black); color: var(--ash);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body, a { cursor: crosshair; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.6rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(6,6,6,0.88);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-wordmark {
+      font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 15px;
+      letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--ash); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 10px;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none;
+      transition: color 0.4s ease; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 0.5px; background: var(--ember);
+      transition: width 0.4s ease;
+    }
+    .nav-links a:hover { color: var(--ash); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hero {
+      padding: 10rem 3rem 3rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .hero .eyebrow {
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 10px;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1.2rem;
+    }
+    .hero .eyebrow a {
+      color: inherit; text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .hero .eyebrow a:hover { opacity: 0.7; }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      line-height: 1.05; color: var(--ash);
+    }
+    .issue-meta {
+      display: flex; gap: 1.2rem; align-items: center;
+      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 9px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); margin-top: 1.4rem;
+    }
+    .issue-meta .tag { color: var(--ember); }
+
+    .content-row {
+      max-width: 900px; margin: 3rem auto 0;
+      padding: 0 3rem;
+    }
+    .body-copy p {
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      line-height: 1.9; font-weight: 300;
+      color: var(--ash); opacity: 0.88;
+      margin-bottom: 1.6rem;
+      max-width: 720px;
+    }
+    .body-copy p:last-child { margin-bottom: 0; }
+    .body-copy em {
+      color: var(--ember); font-style: italic;
+    }
+
+    .submit-cta {
+      margin-top: 3rem;
+      display: inline-block;
+      font-family: 'Raleway', sans-serif; font-weight: 300; font-size: 11px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ember); text-decoration: none;
+      border-bottom: 0.5px solid var(--ember);
+      padding-bottom: 0.3rem;
+      transition: opacity 0.3s ease;
+    }
+    .submit-cta:hover { opacity: 0.7; }
+
+    .rule { height: 0.5px; background: var(--rule); margin: 4rem 3rem; }
+
+    footer {
+      padding: 2rem 3rem; border-top: 0.5px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-mark {
+      font-family: 'Raleway', sans-serif; font-weight: 100; font-size: 10px;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim);
+    }
+    .footer-occult {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-style: italic; font-size: 12px; color: var(--dim); letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .hero, .content-row { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .rule { margin: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <script src="loading.js"></script>
+
+  <nav>
+    <a href="Directory.html" class="nav-wordmark">Occult</a>
+    <ul class="nav-links">
+      <li><a href="under_the_veil.html">Under the Veil</a></li>
+      <li><a href="kerosene.html">Kerosene</a></li>
+      <li><a href="collaboration.html">Collaboration</a></li>
+      <li><a href="contact.html">Contact / Newsletter</a></li>
+      <li><a href="Directory.html">Directory</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="eyebrow"><a href="under_the_veil.html">← Under the Veil</a></p>
+    <h1>Open Aperture</h1>
+    <div class="issue-meta">
+      <span class="tag">Art</span>
+    </div>
+  </section>
+
+  <div class="content-row">
+    <div class="body-copy">
+      <p>This space was meant for a piece of art we haven't found yet.</p>
+      <p>If you make visual work such as painting, drawing, sculpture, mixed media, anything that lives as an object or an image — and you've got a piece you've been sitting on, we'd love to see it. <em>Under the Veil</em> isn't looking for finished or polished. We try to embrace imperfection given the medium as expression.</p>
+      <p>If interested, submit your piece by clicking the link below and filling out your information.</p>
+      <a class="submit-cta" href="collaboration.html">Submit a Piece →</a>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <footer>
+    <span class="footer-mark">O C C U L T &nbsp;·&nbsp; 2026</span>
+    <span class="footer-occult">Under the Veil</span>
+  </footer>
+
+</body>
+</html>
