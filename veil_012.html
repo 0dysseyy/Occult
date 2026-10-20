@@ -100,12 +100,12 @@
       border: 1px solid var(--rule);
       background: #0a0a0a;
     }
-    .video-card video {
+    .video-card iframe {
       display: block;
       width: 100%; height: auto;
       aspect-ratio: 16 / 9;
       background: #000;
-      filter: brightness(0.97) saturate(0.97);
+      border: 0;
     }
 
     .synopsis .label {
@@ -212,9 +212,7 @@
 
       <!-- Video card -->
       <div class="video-card">
-        <video controls preload="metadata">
-          <source src="video/sachie_pulsations.mp4" type="video/mp4">
-        </video>
+        <iframe src="https://www.youtube.com/embed/04Fp-r34ZCQ?modestbranding=1&rel=0" title="Pulsations (Empreintes)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <div class="synopsis">
