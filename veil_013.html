@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghetto Suburbs — Under the Veil 013 | O C C U L T</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#060606; --ash:#f2ede4; --ember:#c8a96e;
+    --dim:rgba(242,237,228,.55); --hair:rgba(242,237,228,.14);
+    --paper:#efe9df; --ink:#141210;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--void);color:var(--ash);font-family:'Raleway',sans-serif;font-weight:300;
+       cursor:crosshair;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ember);text-decoration:none;cursor:crosshair}
+  ::selection{background:var(--ember);color:var(--void)}
+
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+      padding:18px 32px;background:linear-gradient(var(--void),rgba(6,6,6,0));
+      font-size:11px;letter-spacing:.35em;text-transform:uppercase}
+  nav a{color:var(--ash);opacity:.75;transition:opacity .3s}
+  nav a:hover{opacity:1;color:var(--ember)}
+  nav .mark{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.5em;opacity:1}
+
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+        text-align:center;padding:120px 24px 60px;position:relative}
+  .hero::before,.hero::after{content:"";position:absolute;background:var(--hair)}
+  .hero::before{width:1px;height:70px;top:70px;left:50%}
+  .hero::after{width:70px;height:1px;top:105px;left:calc(50% - 35px)}
+  .issue{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--ember);margin-bottom:28px}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,9vw,108px);
+     letter-spacing:.18em;line-height:1.05}
+  .byline{margin-top:26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--dim)}
+  .tags{margin-top:22px;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+  .scroll{margin-top:60px;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+
+  section{max-width:760px;margin:0 auto;padding:70px 24px}
+  .label{font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--ember);
+         display:flex;align-items:center;gap:16px;margin-bottom:34px}
+  .label::after{content:"";flex:1;height:1px;background:var(--hair)}
+  .epigraph{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(21px,3vw,26px);
+            line-height:1.5;text-align:center;max-width:620px;margin:0 auto}
+  .epigraph cite{display:block;margin-top:18px;font-style:normal;font-family:'Raleway',sans-serif;
+                 font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+  .prose p{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.75;margin-bottom:1.2em}
+  .prose p:first-child::first-letter{font-size:3.2em;float:left;line-height:.85;padding:6px 10px 0 0;color:var(--ember)}
+
+  .creator{display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:start}
+  .creator figure{position:relative}
+  .creator img{width:100%;height:auto;display:block;border:1px solid var(--hair)}
+  .creator figcaption{margin-top:14px;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--dim)}
+  .creator h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:30px;letter-spacing:.08em}
+  .creator .alias{color:var(--ember);font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin:6px 0 22px}
+  .creator p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.7;margin-bottom:1em}
+  .ig{display:inline-block;margin-top:18px;padding:12px 22px;border:1px solid var(--ember);
+      font-size:10px;letter-spacing:.4em;text-transform:uppercase;transition:background .3s,color .3s}
+  .ig:hover{background:var(--ember);color:var(--void)}
+
+  .note{border-left:1px solid var(--ember);padding:4px 0 4px 20px;font-size:13px;color:var(--dim);letter-spacing:.03em}
+
+  .reader-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+  .full-btn{background:none;border:1px solid var(--ember);color:var(--ember);font-family:'Raleway',sans-serif;
+            font-size:10px;letter-spacing:.4em;text-transform:uppercase;padding:12px 20px;cursor:crosshair;transition:background .3s,color .3s}
+  .full-btn:hover{background:var(--ember);color:var(--void)}
+  .frame{position:relative;max-width:720px;margin:0 auto}
+  .frame-scroll{max-height:72vh;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+                scrollbar-color:var(--ember) transparent;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;pointer-events:none;
+                background:linear-gradient(rgba(6,6,6,0),rgba(6,6,6,.85))}
+  .frame-hint{text-align:center;margin-top:18px;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+  .reader-full{position:fixed;inset:0;z-index:200;background:var(--void);display:none;flex-direction:column}
+  .reader-full.open{display:flex}
+  .reader-full .bar{display:flex;justify-content:space-between;align-items:center;padding:16px 28px;
+                    border-bottom:1px solid var(--hair);font-size:10px;letter-spacing:.4em;text-transform:uppercase}
+  .reader-full .bar span{color:var(--ember)}
+  .reader-full .full-scroll{flex:1;overflow-y:auto;padding:40px 16px 80px;scrollbar-color:var(--ember) transparent}
+  body.locked{overflow:hidden}
+  .script{background:var(--paper);color:var(--ink);font-family:'Courier Prime',monospace;font-size:15px;
+          line-height:1.45;padding:72px 64px;max-width:720px;margin:0 auto}
+  .script p{margin:0 0 1.1em}
+
+  /* Cover page */
+  .sp-title{min-height:calc(72vh - 72px);display:flex;flex-direction:column;justify-content:center;
+            align-items:center;text-align:center;gap:14px;position:relative}
+  .sp-title .t{font-weight:700;letter-spacing:.2em;font-size:19px;margin-bottom:22px}
+  .sp-title .down{position:absolute;bottom:0;font-size:11px;letter-spacing:.35em;opacity:.45}
+  .reader-full .sp-title{min-height:calc(100vh - 200px)}
+  .sp-break{height:34px;background:var(--void);margin:72px -64px 72px}
+
+  .sp-scene{font-weight:700;margin-top:2.2em!important}
+  .sp-trans{text-align:right}
+  .sp-center{text-align:center;margin-top:2em!important;letter-spacing:.3em}
+  .sp-note{font-style:italic;opacity:.75}
+  .sp-dial{margin:0 0 1.1em}
+  .sp-dial p{margin:0}
+  .sp-char{margin-left:38%!important}
+  .sp-paren{margin-left:28%!important;margin-right:28%!important}
+  .sp-line{margin-left:17%!important;margin-right:17%!important}
+  .sp-loading{text-align:center;opacity:.6}
+
+  .braille{display:block;color:#8a6a2f;letter-spacing:.12em;word-break:break-all}
+  .decipher{display:block;min-height:1.45em;border-left:2px solid #8a6a2f;padding-left:8px;margin-top:4px}
+  .decipher .gap{color:#8a6a2f}
+  .caret::after{content:"▌";animation:blink .8s steps(1) infinite;margin-left:1px}
+  @keyframes blink{50%{opacity:0}}
+
+  footer{text-align:center;padding:80px 24px 60px;border-top:1px solid var(--hair);
+         font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim)}
+  footer a{color:var(--ash)}
+
+  .fade{opacity:0;transform:translateY(18px);transition:opacity 1s ease,transform 1s ease}
+  .fade.in{opacity:1;transform:none}
+
+  @media (max-width:640px){
+    nav{padding:14px 16px;letter-spacing:.25em}
+    section{padding:56px 16px}
+    .creator{grid-template-columns:1fr}
+    .creator figure{max-width:100%}
+    .script{padding:40px 18px;font-size:13px}
+    .sp-break{margin:40px -18px 40px}
+    .reader-full .bar{padding:14px 16px}
+    .reader-full .full-scroll{padding:20px 0 60px}
+    .sp-char{margin-left:30%!important}
+    .sp-paren{margin-left:18%!important;margin-right:10%!important}
+    .sp-line{margin-left:8%!important;margin-right:4%!important}
+  }
+  @media (prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="under_the_veil.html">← Under the Veil</a>
+  <a class="mark" href="directory.html">O C C U L T</a>
+  <a href="#read">Read</a>
+</nav>
+
+<header class="hero">
+  <div class="issue">Under the Veil &nbsp;·&nbsp; Issue 013</div>
+  <h1>GHETTO<br>SUBURBS</h1>
+  <div class="byline">A screenplay by Joshua Odiase &nbsp;·&nbsp; Odyssy.</div>
+  <div class="tags">Film &nbsp;/&nbsp; Screenplay</div>
+  <a class="scroll" href="#synopsis">↓ &nbsp;Enter</a>
+</header>
+
+<section class="fade">
+  <blockquote class="epigraph">
+    “Delinquency is not a kind of natural regression of crime; it is the result of a tactical polyvalence of discourses, institutions, legal and illegal practices.”
+    <cite>Michel Foucault — Discipline and Punish</cite>
+  </blockquote>
+</section>
+
+<section id="synopsis" class="fade">
+  <div class="label">Writer's Statement</div>
+  <div class="prose">
+     <div class="prose">
+    <p><em>Ghetto Suburbs</em> isn’t a heist film — it’s a modern Greek tragedy, set not in ancient Athens but in the cracked concrete and warped dreams of America’s overlooked neighborhoods, post-COVID.</p>
+    <p>We follow three men — Mani, JB, and Dante — bound by very human, very urgent moral and financial quandaries. Their plan: rob their old high school. On the surface, it’s the theft of cameras — but underneath, it’s an act of hope and desperation.</p>
+    <p>What follows is not spectacle, but consequence — a consequence they’ve been conditioned to bear: the weight of institutional abandonment and the unlivable demands of survival.</p>
+    <p>This is a film of social critique and ethical tension — a cinematic case study of what happens when young men are born into a story already written, one that punishes deviation even when the script is suffocating.</p>
+    <p>With a visceral undercurrent of class commentary, <em>Ghetto Suburbs</em> asks not just what happens when you resist your fate — but what happens when that resistance is the only act of love you have left.</p>
+  </div>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="label">Creator</div>
+  <div class="creator">
+    <figure>
+      <img src="odyss.jpg" alt="Joshua Odiase, creator of Ghetto Suburbs">
+      <figcaption>Antioch, California</figcaption>
+      <a class="ig" id="igLink" href="#" target="_blank" rel="noopener">Instagram ↗</a>
+    </figure>
+    <div>
+      <h3>Joshua Odiase</h3>
+      <div class="alias">Odyssy.</div>
+      <p>This is a draft — heavily edited, but still a draft. I still want to do more research in some areas to make it factually accurate, as well as keep working on the formatting and a few plot points.</p>
+      <p>I wrote this between December 2022 and summer 2025, from ages 17 to 19. It took a lot of inspiration from my hometown, Antioch, California (the YOC). I built the story around real places and one real event: the heist of our film (video production) class’s cameras, caught on CCTV. Yeah, niggas were mad about the equipment being stolen, but I was like, that’s a smart hit. I was also learning to work with my budget, inspired by great auteurs who used their own surroundings and peers as the basis for great storytelling, even without high-end money behind them.</p>
+      <p>For more context, I’ve had such an ambivalent relationship with this script. I wrote it on and (mostly) off during that period; sometimes I just wanted to table it and leave it, but I was set on finishing it. After graduating, I asked my old film teacher (who I didn’t view fondly back when I was his student) for his thoughts, since I wanted to make this a reality and put it into production at our school. He wanted to “go straight to the action,” as he said verbatim, and cut out basically the whole essence of the film. When I asserted that that wasn’t the point, my style, or the heart of the narrative, he left me on read. I already had mixed feelings about him, but it was still disheartening, especially as the student I believed pushed the envelope most in that class when it came to creating. Mind you, I made a whole 220-slide storyboard for this, edited it heavily, had people I trusted review it, and was even in talks with a producer from St. Louis to help with financing and budgeting (which was basically nonexistent). I was planning to pay out of my own pocket.</p>
+      <p>All to say, I let that one opinion get to me. From where I stand now, I couldn’t tell you why, but back then I was a different person. I used to let others limit what I could do and my own self-efficacy — how much I believed in myself. And even though I’d say I’ve outgrown this part of my story, with my style, interests, and world growing far beyond my hometown, this still deserves its light. Hope y’all enjoy — and remember, fuck what they say.</p>
+      <p>To anyone reading this, whether you know me or not: I always welcome opinions, feedback, or any thoughts. Just reach out through the <a href="contact.html">contact form</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="read" class="fade">
+  <div class="reader-head">
+    <div class="label" style="margin:0;flex:1">The Script</div>
+    <button class="full-btn" id="openFull" type="button">View in full page ⤢</button>
+  </div>
+  <p class="note" style="margin-bottom:34px">Content note: gun violence, death, drug use, and strong language, including slurs.</p>
+  <div class="frame"><div class="frame-scroll" id="frameScroll">
+    <article class="script" id="script"><p class="sp-loading">Loading script…</p></article>
+  </div></div>
+  <p class="frame-hint">Scroll to read &nbsp;·&nbsp; or open the full page</p>
+</section>
+
+<div class="reader-full" id="readerFull" role="dialog" aria-modal="true" aria-label="Ghetto Suburbs, full page">
+  <div class="bar"><span>Ghetto Suburbs &nbsp;·&nbsp; Joshua Odiase</span>
+    <button class="full-btn" id="closeFull" type="button">Close ✕</button></div>
+  <div class="full-scroll" id="fullScroll"></div>
+</div>
+
+<footer>
+  <a href="under_the_veil.html">Under the Veil</a> &nbsp;·&nbsp; <a href="directory.html">Directory</a><br><br>
+  © Joshua Odiase · O C C U L T
+</footer>
+
+<script>
+/* ===== EDIT THESE ===== */
+const INSTAGRAM_URL = "https://www.instagram.com/joshodiase/";
+const SCRIPT_URL    = "ghetto_suburbs.fountain";
+/* ====================== */
+
+document.getElementById('igLink').href = INSTAGRAM_URL;
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const isUpper = s => /[A-Z]/.test(s) && s === s.toUpperCase();
+
+const BR = {a:'⠁',b:'⠃',c:'⠉',d:'⠙',e:'⠑',f:'⠋',g:'⠛',h:'⠓',i:'⠊',j:'⠚',k:'⠅',l:'⠇',m:'⠍',
+  n:'⠝',o:'⠕',p:'⠏',q:'⠟',r:'⠗',s:'⠎',t:'⠞',u:'⠥',v:'⠧',w:'⠺',x:'⠭',y:'⠽',z:'⠵',
+  '1':'⠁','2':'⠃','3':'⠉','4':'⠙','5':'⠑','6':'⠋','7':'⠛','8':'⠓','9':'⠊','0':'⠚',
+  '.':'⠲',',':'⠂','?':'⠦','!':'⠖',"'":'⠄','-':'⠤'};
+const GAP = '⠿⠿⠿';
+const toBraille = s => s.split('(__)').map(part =>
+  [...part.toLowerCase()].map(ch => BR[ch] || (ch === ' ' ? ' ' : ch)).join('')).join(GAP);
+
+function render(src){
+  const lines = src.replace(/\r/g,'').split('\n');
+  const meta = {}; let i = 0;
+  while (i < lines.length && lines[i].trim() && lines[i].includes(':')){
+    const k = lines[i].slice(0, lines[i].indexOf(':')).trim();
+    meta[k] = lines[i].slice(lines[i].indexOf(':') + 1).trim(); i++;
+  }
+  let html = `<div class="sp-title"><div class="t">${esc(meta.Title || 'GHETTO SUBURBS')}</div>
+    <div>${esc(meta.Credit || 'Written by')}</div><div>${esc(meta.Author || 'Joshua Odiase')}</div>
+    <div class="down">↓</div></div><div class="sp-break"></div>`;
+
+  const blocks = lines.slice(i).join('\n').trim().split(/\n\s*\n/);
+  for (const raw of blocks){
+    const b = raw.split('\n').map(x => x.trimEnd()).filter(x => x.trim());
+    if (!b.length) continue;
+    const f = b[0];
+    if (f === '> END <'){ html += `<p class="sp-center">END</p>`; continue; }
+    if (/^\.[^.]/.test(f)){ html += `<p class="sp-scene">${esc(f.slice(1))}</p>`; continue; }
+    if (/^(INT|EXT)[./]/.test(f)){ html += `<p class="sp-scene">${esc(f)}</p>`; continue; }
+    if (b.length === 1 && isUpper(f) && f.endsWith('TO:')){ html += `<p class="sp-trans">${esc(f)}</p>`; continue; }
+    if (b.length > 1 && isUpper(f)){
+      const tula = f.startsWith("TULA'S INTERPRETATION");
+      html += `<div class="sp-dial"><p class="sp-char">${esc(f)}</p>`;
+      for (const x of b.slice(1)){
+        if (x.startsWith('(') && x.endsWith(')')) html += `<p class="sp-paren">${esc(x)}</p>`;
+        else if (tula) html += `<p class="sp-line tula" data-text="${esc(x).replace(/"/g,'&quot;')}">
+            <span class="braille">${esc(toBraille(x))}</span><span class="decipher"></span></p>`;
+        else html += `<p class="sp-line">${esc(x)}</p>`;
+      }
+      html += `</div>`; continue;
+    }
+    const cls = f.startsWith('NOTE:') ? 'sp-action sp-note' : 'sp-action';
+    html += `<p class="${cls}">${b.map(esc).join('<br>')}</p>`;
+  }
+  const el = document.getElementById('script');
+  el.innerHTML = html;
+  setupDecipher(el);
+}
+
+function setupDecipher(root){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fill = (out, text, n) => {
+    out.innerHTML = text.slice(0, n).split('(__)').map(esc).join(`<span class="gap">${GAP}</span>`);
+  };
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries){
+      if (!e.isIntersecting) continue;
+      io.unobserve(e.target);
+      const text = e.target.dataset.text;
+      const out = e.target.querySelector('.decipher');
+      if (reduce){ fill(out, text, text.length); continue; }
+      let n = 0;
+      out.classList.add('caret');
+      setTimeout(function tick(){
+        n = text.startsWith('(__)', n) ? n + 4 : n + 1;
+        fill(out, text, n);
+        if (n < text.length) setTimeout(tick, 22);
+        else out.classList.remove('caret');
+      }, 650);
+    }
+  }, {threshold: .6});
+  root.querySelectorAll('.tula').forEach(p => io.observe(p));
+}
+
+fetch(SCRIPT_URL)
+  .then(r => { if (!r.ok) throw 0; return r.text(); })
+  .then(render)
+  .catch(() => {
+    document.getElementById('script').innerHTML =
+      `<p class="sp-loading">The script couldn’t load. Please refresh the page.</p>`;
+  });
+
+/* Full-page reader: moves the same script into an overlay, keeping your place */
+const scriptEl = document.getElementById('script');
+const frameScroll = document.getElementById('frameScroll');
+const full = document.getElementById('readerFull');
+const fullScroll = document.getElementById('fullScroll');
+function openFull(){
+  const ratio = frameScroll.scrollTop / Math.max(1, frameScroll.scrollHeight - frameScroll.clientHeight);
+  fullScroll.appendChild(scriptEl);
+  full.classList.add('open'); document.body.classList.add('locked');
+  fullScroll.scrollTop = ratio * (fullScroll.scrollHeight - fullScroll.clientHeight);
+}
+function closeFull(){
+  const ratio = fullScroll.scrollTop / Math.max(1, fullScroll.scrollHeight - fullScroll.clientHeight);
+  frameScroll.appendChild(scriptEl);
+  full.classList.remove('open'); document.body.classList.remove('locked');
+  frameScroll.scrollTop = ratio * (frameScroll.scrollHeight - frameScroll.clientHeight);
+}
+document.getElementById('openFull').addEventListener('click', openFull);
+document.getElementById('closeFull').addEventListener('click', closeFull);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && full.classList.contains('open')) closeFull(); });
+
+const fio = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); fio.unobserve(e.target); }
+}), {threshold: .15});
+document.querySelectorAll('.fade').forEach(s => fio.observe(s));
+</script>
+</body>
+</html>
