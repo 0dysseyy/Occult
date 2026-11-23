@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <title>Directory</title>
   <style>
+    :root {
+      /* Scene aspect ratio. Change these two numbers to adjust the crop, e.g. 16 / 10 */
+      --ratio-w: 16;
+      --ratio-h: 9;
+    }
+
     html, body {
       margin: 0;
       height: 100%;
@@ -12,11 +18,23 @@
       transition: opacity 1.5s ease;
       opacity: 1;
     }
+
+    .scene-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* fixed ratio that always covers the screen */
+      width: max(100vw, 100vh * var(--ratio-w) / var(--ratio-h));
+      height: max(100vh, 100vw * var(--ratio-h) / var(--ratio-w));
+    }
+
     canvas {
       width: 100%;
       height: 100%;
       display: block;
     }
+
     .fade-out {
       opacity: 0;
     }
@@ -25,55 +43,57 @@
 <body>
   <script src="loading1.js"></script>
 
-<canvas id="canvas3d"></canvas>
+  <div class="scene-container">
+    <canvas id="canvas3d"></canvas>
+  </div>
 
-<!-- Import maps polyfill -->
-<script async src="https://unpkg.com/es-module-shims@2.6.0/dist/es-module-shims.js"></script>
-<script type="importmap">
-  {
-    "imports": {
-      "@splinetool/runtime": "https://unpkg.com/@splinetool/runtime@1.10.10/build/runtime.js"
+  <!-- Import maps polyfill -->
+  <script async src="https://unpkg.com/es-module-shims@2.6.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "@splinetool/runtime": "https://unpkg.com/@splinetool/runtime@1.10.10/build/runtime.js"
+      }
     }
-  }
-</script>
+  </script>
 
-<script type="module">
-  import { Application } from '@splinetool/runtime';
+  <script type="module">
+    import { Application } from '@splinetool/runtime';
 
-  const canvas = document.getElementById('canvas3d');
-  const app = new Application(canvas);
+    const canvas = document.getElementById('canvas3d');
+    const app = new Application(canvas);
 
-  const pageMap = {
-    "Directory": "Directory.html"
-  };
+    const pageMap = {
+      "Directory": "Directory.html"
+    };
 
-  app.load('https://prod.spline.design/AJggjjaqAeUW6dFE/scene.splinecode').then(() => {
-    app.addEventListener('mouseDown', (e) => {
-      const clickedName = e.target.name;
-      console.log("Clicked object:", clickedName);
+    app.load('https://prod.spline.design/AJggjjaqAeUW6dFE/scene.splinecode').then(() => {
+      app.addEventListener('mouseDown', (e) => {
+        const clickedName = e.target.name;
+        console.log("Clicked object:", clickedName);
 
-      if (pageMap[clickedName]) {
-        if (window.occultShowLoading) window.occultShowLoading();
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-          window.location.href = pageMap[clickedName];
-        }, 1500); // Match fade duration
+        if (pageMap[clickedName]) {
+          if (window.occultShowLoading) window.occultShowLoading();
+          document.body.classList.add('fade-out');
+          setTimeout(() => {
+            window.location.href = pageMap[clickedName];
+          }, 1500); // Match fade duration
+        }
+      });
+    });
+  </script>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.body.classList.remove('fade-out');
+    });
+
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        window.location.reload();
       }
     });
-  });
-</script>
-
-<script>
-  window.addEventListener('load', () => {
-    document.body.classList.remove('fade-out');
-  });
-
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      window.location.reload();
-    }
-  });
-</script>
+  </script>
 
 </body>
 </html>
