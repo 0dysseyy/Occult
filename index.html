@@ -38,6 +38,15 @@
     .fade-out {
       opacity: 0;
     }
+
+    /* Phones held upright: use the normal screen size so the canvas
+       doesn't balloon and crash mobile browsers. Must stay below .scene-container. */
+    @media (max-aspect-ratio: 1/1) {
+      .scene-container {
+        width: 100vw;
+        height: 100vh;
+      }
+    }
   </style>
 </head>
 <body>
