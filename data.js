@@ -20,7 +20,7 @@ const VEIL_DB = [
     title: "GHETTO SUBURBS BY JOSHUA ODIASE",
     date: "Nov 2026",
     tags: ["Film"],
-    excerpt: "In a destitute Bay Area town fractured by class, where opportunity is a myth, three friends stage a break-in — not for riches, but to etch meaning into a world that’s already written them off. By night’s end, only tragedy remains.",
+    excerpt: "Etch meaning into a world that’s already written them off.",
     url: "veil_013.html",
     image: IMG_013,
     isCurrent: true,
